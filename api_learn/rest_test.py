@@ -76,14 +76,51 @@ class UserSerializer(serializers.Serializer):
     profile = ProfileSerializer()
 
 
-frontend_data = {
-    'name': 'myfour',
-    'qq': '913906842',
-    'profile': {
-        'tel': '12342321234',
-        'height': '180'
-    }
-}
-test = UserSerializer(data=frontend_data)
-if test.is_valid():
-    print(test.validated_data)
+# 外键关系的前端输入测试
+# frontend_data = {
+#     'name': 'myfour',
+#     'qq': '913906842',
+#     'profile': {
+#         'tel': '12342321234',
+#         'height': '180'
+#     }
+# }
+# test = UserSerializer(data=frontend_data)
+# if test.is_valid():
+#     print(test.validated_data)
+
+# 自定义一个字段
+# class TEL(object):
+#     def __init__(self, num=None):
+#         self.num = num
+
+#     def text(self, message):
+#         """发短信功能"""
+#         return self._send_message(message)
+
+#     def _send_message(self, message):
+#         """发短信"""
+#         print('Send {} to {}'.format(message[:10], self.num))
+
+# class TELField(serializers.Field):
+#     def to_representation(self, tel_obj):
+#         return tel_obj.num
+
+#     def to_internal_value(self, data):
+#         data = data.lstrip().rstrip().strip()
+#         if 8 <= len(data) <= 11:
+#             return TEL(data)
+#         raise serializers.ValidationError('Invalid telephone number.')
+
+from rest_framework.viewsets import ModelViewSet
+
+
+class TestViewSet(ModelViewSet):
+    queryset = TestModel.objects.all()
+
+
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+router.register(r'codes', TestViewSet)
+urlpatterns = router.urls
+print(urlpatterns)
