@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_learn.apps.RestLearnConfig',
     'rest_framework',
+    'rest_learn.apps.RestLearnConfig',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
