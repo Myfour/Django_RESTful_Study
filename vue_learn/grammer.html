@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Grammer</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="vue.js"></script>
+    <script type="text/javascript">
+        // some usage
+        /*
+            let app = new Vue({
+                el: '#app',
+                template: `<h1>{{name}},{{greeting}}!=======>>>{{say('nike')}}</h1>`,
+                data: function () {
+                    return {
+                        name: 'Myfour'
+                    }
+                },
+                // computed计算属性，其值为一个js对象，
+                // 第一层的key是属性名，value可以直接设
+                // 置一个function或者套一个新的对象，并
+                // 设置get，set方法;Vue2.x默认的计算属
+                // 性是不允许赋值操作的，可以自己重写自
+                // 定义
+                computed: {
+                    greeting: {
+                        get: function () {
+                            return 'I am Vue. Nice to meet you ' + this.name + '---------->>>' + this.say(
+                                'adidas')
+                        },
+                        set: function (value) {
+                            console.log('You can not change the property to value: ' + value)
+                        }
+                    }
+                },
+                methods: {
+                    say: function (value) {
+                        return value.toUpperCase()
+                    }
+                }
+            })
+            
+            //setInterval(function () {
+            //    if (app.msg == 'Grammer') {
+            //        app.msg = 'Vue'
+            //    } else {
+            //        app.msg = 'Grammer'
+            //    }
+            //}, 500)
+            
+        */
+
+        // v-on v-bind
+        /*
+        let app = new Vue({
+            el: '#app',
+            template: `
+            <div>
+                <input type="text" placeholder="username" v-on:input="changeHref">
+                <a v-bind:href="UserLink">Go Home</a>
+            </div>
+            `,
+            data: function () {
+                return {
+                    UserLink: '#'
+                }
+            },
+            methods: {
+                changeHref: function (event) {
+                    let username = event.target.value
+                    if (username) {
+                        this.UserLink = 'http://www.example.com/' + username
+                    } else {
+                        this.UserLink = '#'
+                    }
+                }
+            }
+        })
+        */
+
+        // v-if v-for
+        let app = new Vue({
+            el: '#app',
+            template: `
+            <ul>
+                <li v-for='person in personList'>
+                    <p>Name:{{person.name}}</p>
+                    <p v-if='person.age>18'>Age:{{person.age}}</p>
+                </li>
+            </ul>
+            `,
+            data: function () {
+                return {
+                    personList: [{
+                        name: 'Myfour',
+                        age: '18'
+                    }, {
+                        name: 'Ace',
+                        age: '20'
+                    }, {
+                        name: 'Lay',
+                        age: '22'
+                    }]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
