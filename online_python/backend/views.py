@@ -63,3 +63,4 @@ class CodeViewSet(APIRunCodeMixin, ModelViewSet):
                 data.update({'output': output})
                 return Response(data=data, status=status.HTTP_201_CREATED)
             return Response(data=serializer.data)
+        return Response
